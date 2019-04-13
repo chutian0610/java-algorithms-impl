@@ -1,5 +1,7 @@
 package cn.victor.algorithms.sort.selectionsort;
 
+import cn.victor.algorithms.sort.Sorter;
+
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -10,18 +12,18 @@ import java.util.Comparator;
  * @Version 1.0
  * @Description 选择排序的实现
  */
-public class SelectionSort<T> {
-
-    private Comparator<T> comparator;
+public class SelectionSort<T>  extends Sorter<T> {
 
     public SelectionSort(Comparator<T> comparator){
-        this.comparator = comparator;
+        super(comparator);
     }
 
     void sort(T[] array){
         int length =array.length;
         for(int i=0;i<length-1;i++){
+            // 1. 找到未排序中的最小值
             int index = getMinFromSubArray(array,i);
+            // 2. 放置最小值
             swap(array,i,index);
         }
     }
@@ -40,7 +42,7 @@ public class SelectionSort<T> {
         T min = array[begin];
         int minIndex = begin;
         for(int i = begin+1;i<array.length;i++){
-            if(comparator.compare(min,array[i])>0){
+            if(comparator.compare(min,array[i])>0){ // stable selection sort
                 min = array[i];
                 minIndex =i;
             }
