@@ -18,19 +18,20 @@ public class BubbleSort<T> extends Sorter<T> {
         super(comparator);
     }
 
-    protected void sort(T[] array) {
+    protected T[] sort(T[] array) {
         for (int i = array.length - 1; i > 0; i--) {
             if (!bubble(array, i)) {
                 // 未发生交换
                 break;
             }
         }
+        return array;
     }
 
     boolean bubble(T[] array, int endIndex) {
         boolean swap = false;
         for (int i = 0; i < endIndex; i++) {
-            if (comparator.compare(array[i], array[i + 1]) > 0) { // stable sort
+            if (comparator.compare(array[i], array[i + 1]) > 0) { // stable sort,当相等时，不冒泡
                 T tmp = array[i];
                 array[i] = array[i + 1];
                 array[i + 1] = tmp;

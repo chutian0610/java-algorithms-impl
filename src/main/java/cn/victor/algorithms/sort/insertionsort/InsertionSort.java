@@ -19,7 +19,7 @@ public class InsertionSort<T> extends Sorter<T> {
     }
 
     @Override
-    protected void sort(T[] array) {
+    protected T[] sort(T[] array) {
         for (int i = 1; i < array.length; i++) {
             T target = array[i];
             int j = i - 1;
@@ -31,6 +31,7 @@ public class InsertionSort<T> extends Sorter<T> {
             }
             array[j + 1] = target;
         }
+        return array;
     }
 
     public static void main(String[] args) {

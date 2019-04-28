@@ -18,7 +18,7 @@ public class SelectionSort<T> extends Sorter<T> {
         super(comparator);
     }
 
-    protected void sort(T[] array) {
+    protected T[] sort(T[] array) {
         int length = array.length;
         for (int i = 0; i < length - 1; i++) {
             // 1. 找到未排序中的最小值
@@ -26,6 +26,7 @@ public class SelectionSort<T> extends Sorter<T> {
             // 2. 放置最小值
             swap(array, i, index);
         }
+        return array;
     }
 
     void swap(T[] array, int target, int source) {

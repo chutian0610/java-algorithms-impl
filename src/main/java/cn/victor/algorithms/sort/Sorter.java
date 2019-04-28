@@ -16,5 +16,5 @@ public abstract class Sorter<T> {
         this.comparator = comparator;
     }
 
-    protected abstract void sort(T[] array);
+    protected abstract T[] sort(T[] array);
 }
