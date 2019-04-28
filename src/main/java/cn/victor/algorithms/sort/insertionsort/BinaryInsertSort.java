@@ -21,11 +21,11 @@ public class BinaryInsertSort<T> extends Sorter<T> {
     protected T[] sort(T[] array) {
         for (int i = 1; i < array.length; i++) {
             T target = array[i];
-            if(comparator.compare(array[i-1],target)>0){
+            if (comparator.compare(array[i - 1], target) > 0) {
                 // 需要移动位置
-                int index = binarySearch(array,0,i-1,target);
-                int j = i-1;
-                while (j>=index) {
+                int index = binarySearch(array, 0, i - 1, target);
+                int j = i - 1;
+                while (j >= index) {
                     array[j + 1] = array[j];
                     j = j - 1;
                 }
@@ -37,21 +37,22 @@ public class BinaryInsertSort<T> extends Sorter<T> {
 
     /**
      * 返回搜索index
+     *
      * @param array
      * @param beginIndex
      * @param endIndex
      * @param target
      * @return
      */
-    int binarySearch(T[] array,int beginIndex,int endIndex,T target){
-        if(beginIndex == endIndex){
+    int binarySearch(T[] array, int beginIndex, int endIndex, T target) {
+        if (beginIndex == endIndex) {
             return beginIndex;
         }
-        int middle = (beginIndex+endIndex)/2;
-        if(comparator.compare(array[middle],target)>0){
-            return binarySearch(array,beginIndex,middle,target);
-        }else {
-            return binarySearch(array,middle+1,endIndex,target);
+        int middle = (beginIndex + endIndex) / 2;
+        if (comparator.compare(array[middle], target) > 0) {
+            return binarySearch(array, beginIndex, middle, target);
+        } else {
+            return binarySearch(array, middle + 1, endIndex, target);
         }
     }
 
