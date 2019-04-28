@@ -22,7 +22,7 @@ public class LFUCache<K, V> {
     }
 
     private void oneStepUp(Node n) {
-        n.frequency++; //访问次数+1
+        n.frequency++; //使用次数+1
         boolean singleNodeQ = false; //为true时，代表此NodeQueue中只有一个Node元素
         if (n.nq.head == n.nq.tail)
             singleNodeQ = true;
