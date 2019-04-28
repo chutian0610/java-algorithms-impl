@@ -1,7 +1,6 @@
 package cn.victor.algorithms.sort.insertionsort;
 
 import cn.victor.algorithms.sort.Sorter;
-import cn.victor.algorithms.sort.selectionsort.SelectionSort;
 
 import java.util.Arrays;
 import java.util.Comparator;
