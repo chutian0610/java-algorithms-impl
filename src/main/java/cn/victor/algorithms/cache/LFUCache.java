@@ -91,7 +91,7 @@ public class LFUCache<K, V> {
         if (n == null)
             return null;
         oneStepUp(n);
-        return (V)n.value;
+        return (V) n.value;
     }
 
     public void put(K key, V value) {

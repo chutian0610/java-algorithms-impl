@@ -15,4 +15,6 @@ public abstract class Sorter<T> {
     public Sorter(Comparator<T> comparator) {
         this.comparator = comparator;
     }
+
+    protected abstract void sort(T[] array);
 }

@@ -1,7 +1,6 @@
 package cn.victor.algorithms.sort.bubblesort;
 
 import cn.victor.algorithms.sort.Sorter;
-import cn.victor.algorithms.sort.selectionsort.SelectionSort;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -19,22 +18,22 @@ public class BubbleSort<T> extends Sorter<T> {
         super(comparator);
     }
 
-    void sort(T[] array){
-        for (int i = array.length-1;i>0;i--){
-            if(!bubble(array,i)){
+    protected void sort(T[] array) {
+        for (int i = array.length - 1; i > 0; i--) {
+            if (!bubble(array, i)) {
                 // 未发生交换
                 break;
             }
         }
     }
 
-    boolean bubble(T[] array,int endIndex){
-        boolean swap =false;
-        for(int i=0;i<endIndex;i++){
-            if(comparator.compare(array[i],array[i+1])>0){ // stable sort
+    boolean bubble(T[] array, int endIndex) {
+        boolean swap = false;
+        for (int i = 0; i < endIndex; i++) {
+            if (comparator.compare(array[i], array[i + 1]) > 0) { // stable sort
                 T tmp = array[i];
-                array[i] =array[i+1];
-                array[i+1] = tmp;
+                array[i] = array[i + 1];
+                array[i + 1] = tmp;
                 swap = true;
             }
         }
@@ -45,17 +44,17 @@ public class BubbleSort<T> extends Sorter<T> {
         BubbleSort<Integer> bubbleSort = new BubbleSort<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                if(o1>o2){
+                if (o1 > o2) {
                     return 1;
                 }
-                if(o1.equals(o2)){
+                if (o1.equals(o2)) {
                     return 0;
                 }
                 return -1;
             }
         });
 
-        Integer[] integers = new Integer[]{32,4254,124,54,24,6763,3435,12344,63,254};
+        Integer[] integers = new Integer[]{32, 4254, 124, 54, 24, 6763, 3435, 12344, 63, 254};
         bubbleSort.sort(integers);
         System.out.println(Arrays.toString(integers));
     }
