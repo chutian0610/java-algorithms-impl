@@ -1,4 +1,4 @@
-package cn.victor.algorithms.cache;
+package info.victorchu.algorithms.cache;
 
 import java.util.HashMap;
 

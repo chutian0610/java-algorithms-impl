@@ -1,4 +1,4 @@
-package cn.victor.algorithms.sort;
+package info.victorchu.algorithms.sort;
 
 import java.util.Comparator;
 

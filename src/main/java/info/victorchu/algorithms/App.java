@@ -1,4 +1,4 @@
-package cn.victor.algorithms;
+package info.victorchu.algorithms;
 
 /**
  * Hello world!
