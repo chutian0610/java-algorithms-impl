@@ -1,6 +1,6 @@
-package cn.victor.algorithms.sort.selectionsort;
+package info.victorchu.algorithms.sort.selectionsort;
 
-import cn.victor.algorithms.sort.Sorter;
+import info.victorchu.algorithms.sort.Sorter;
 
 import java.util.Arrays;
 import java.util.Comparator;

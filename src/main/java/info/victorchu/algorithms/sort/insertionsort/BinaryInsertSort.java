@@ -1,6 +1,6 @@
-package cn.victor.algorithms.sort.insertionsort;
+package info.victorchu.algorithms.sort.insertionsort;
 
-import cn.victor.algorithms.sort.Sorter;
+import info.victorchu.algorithms.sort.Sorter;
 
 import java.util.Arrays;
 import java.util.Comparator;
