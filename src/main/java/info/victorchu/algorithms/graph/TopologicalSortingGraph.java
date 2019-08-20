@@ -71,22 +71,31 @@ public class TopologicalSortingGraph<V extends Comparable> {
             return;
         }
         boolean containsEmptyInCome = false;
-        Iterator<Node<V>> it = nodeList.iterator();
-        while(it.hasNext()){
-            Node<V> item = it.next();
-            if(item.getInComingCount()==0){
-                containsEmptyInCome= true;
-                List<Node<V>> outGoings = item.getOutGoings();
-                for (Node<V> outGoing:outGoings) {
-                    outGoing.getInComes().remove(item);
-                }
-                it.remove();
-                results.add(item.getInner());
+        int count =0;
+        // 找到输入为0的节点
+        List<Integer> todo = new ArrayList<>();
+        for (Node<V> item : nodeList) {
+            if (item.getInComingCount() == 0) {
+                todo.add(count);
             }
+            count++;
+        }
+        todo.sort(Comparator.reverseOrder());
+        // 倒序删除输入为0的节点
+        for (int index:todo) {
+            System.out.println(nodeList.get(index).getInner());
+            containsEmptyInCome= true;
+            List<Node<V>> outGoings = nodeList.get(index).getOutGoings();
+            for (Node<V> outGoing:outGoings) {
+                outGoing.getInComes().remove(nodeList.get(index));
+            }
+            results.add(nodeList.get(index).getInner());
+            nodeList.remove(index);
         }
         if(!containsEmptyInCome){
             throw new RuntimeException("DAG contains cyclic dependencies:"+ Arrays.toString(nodeList.toArray()));
         }
+        // 递归
         sort0(nodeList,results);
     }
 
