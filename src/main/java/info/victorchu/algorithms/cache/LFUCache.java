@@ -9,6 +9,7 @@ import java.util.HashMap;
  * @Version 1.0
  * @Description LFU（Least Frequently Used）最近最少使用算法。
  * 它是基于“如果一个数据在最近一段时间内使用次数很少，那么在将来一段时间内被使用的可能性也很小”的思路。
+ * 如果访问次数相同的元素有多个，则移除最久访问的那个
  */
 public class LFUCache<K, V> {
     private NodeQueue tail;  //链表尾部的NodeQueue
@@ -118,6 +119,7 @@ public class LFUCache<K, V> {
             n.nq = nq;
         } else if (this.tail.tail.frequency == 0) {
             //外层链表尾部元素的访问次数是0，那么将Node加入到外层链表尾部元素的头部
+            // 之所以加到头部，是因为要求“如果访问次数相同的元素有多个，则移除最久访问的那个”
             n.prev = this.tail.head;
             this.tail.head.next = n;
             n.nq = this.tail;
