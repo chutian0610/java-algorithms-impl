@@ -14,6 +14,11 @@ import java.util.HashMap;
 public class LFUCache<K, V> {
     private NodeQueue tail;  //链表尾部的NodeQueue
     private int capacity;  //容量
+
+    public HashMap<K, Node> getMap() {
+        return map;
+    }
+
     private HashMap<K, Node> map;  //存储key-value对的HashMap
 
     //构造方法
@@ -22,6 +27,25 @@ public class LFUCache<K, V> {
         map = new HashMap<K, Node>(capacity);
     }
 
+    public static void main(String[] args) {
+        LFUCache<String,String> cache = new LFUCache<>(4);
+        cache.put("a","A");
+        cache.put("b","B");
+        cache.put("c","C");
+        cache.put("d","D");
+        cache.get("a");
+        cache.get("a");
+        cache.get("b");
+        cache.get("b");
+        cache.get("b");
+        cache.get("c");
+        cache.get("c");
+        cache.get("d"); // this will be remove according to LFU policy
+        cache.put("e","E");
+        cache.getMap().forEach((k,v)->{
+            System.out.println(k+":"+v.value);
+        });
+    }
     private void oneStepUp(Node n) {
         n.frequency++; //使用次数+1
         boolean singleNodeQ = false; //为true时，代表此NodeQueue中只有一个Node元素
