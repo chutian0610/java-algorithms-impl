@@ -9,10 +9,16 @@ import java.util.HashMap;
  * @Version 1.0
  * @Description LFU（Least Frequently Used）最近最少使用算法。
  * 它是基于“如果一个数据在最近一段时间内使用次数很少，那么在将来一段时间内被使用的可能性也很小”的思路。
+ * 如果访问次数相同的元素有多个，则移除最久访问的那个
  */
 public class LFUCache<K, V> {
     private NodeQueue tail;  //链表尾部的NodeQueue
     private int capacity;  //容量
+
+    public HashMap<K, Node> getMap() {
+        return map;
+    }
+
     private HashMap<K, Node> map;  //存储key-value对的HashMap
 
     //构造方法
@@ -21,6 +27,25 @@ public class LFUCache<K, V> {
         map = new HashMap<K, Node>(capacity);
     }
 
+    public static void main(String[] args) {
+        LFUCache<String,String> cache = new LFUCache<>(4);
+        cache.put("a","A");
+        cache.put("b","B");
+        cache.put("c","C");
+        cache.put("d","D");
+        cache.get("a");
+        cache.get("a");
+        cache.get("b");
+        cache.get("b");
+        cache.get("b");
+        cache.get("c");
+        cache.get("c");
+        cache.get("d"); // this will be remove according to LFU policy
+        cache.put("e","E");
+        cache.getMap().forEach((k,v)->{
+            System.out.println(k+":"+v.value);
+        });
+    }
     private void oneStepUp(Node n) {
         n.frequency++; //使用次数+1
         boolean singleNodeQ = false; //为true时，代表此NodeQueue中只有一个Node元素
@@ -118,6 +143,7 @@ public class LFUCache<K, V> {
             n.nq = nq;
         } else if (this.tail.tail.frequency == 0) {
             //外层链表尾部元素的访问次数是0，那么将Node加入到外层链表尾部元素的头部
+            // 之所以加到头部，是因为要求“如果访问次数相同的元素有多个，则移除最久访问的那个”
             n.prev = this.tail.head;
             this.tail.head.next = n;
             n.nq = this.tail;
