@@ -1,5 +1,7 @@
 package info.victorchu.algorithms.str.match;
 
+import java.util.Arrays;
+
 public class KMPMatcher {
 
      // 从模式中提取 next 数组
@@ -19,12 +21,7 @@ public class KMPMatcher {
              if (pattern[k] == pattern[j]) {
                  // 如果pattern[j+1] 匹配失败,下一步匹配 pattern[k+1].
                  // 但是如果 pattern[j+1] == pattern[k+1],这一步是可以省略的.直接判断 next[k+1]
-                 int x = j + 1;
-                 int y = k + 1;
-                 while (y > 0 && pattern[x] == pattern[y]) {
-                     y = next[y];
-                 }
-                 next[x] = y;
+                 next[j + 1] = next[k+1];
              }
          }
      }
@@ -60,6 +57,6 @@ public class KMPMatcher {
      }
 
     public static void main(String[] args) {
-        System.out.println(new KMPMatcher().indexOf("abacababc","abab"));
+        System.out.println(new KMPMatcher().indexOf("abacababababc","ababababc"));
     }
 }
