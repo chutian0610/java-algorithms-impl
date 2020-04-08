@@ -7,6 +7,7 @@
 * [冒泡排序](src/main/java/info/victorchu/algorithms/sort/bubblesort/BubbleSort.java)
 * [插入排序](src/main/java/info/victorchu/algorithms/sort/insertionsort/InsertionSort.java)
 * [二分插入排序](src/main/java/info/victorchu/algorithms/sort/insertionsort/BinaryInsertSort.java)
+* [选择排序](src/main/java/info/victorchu/algorithms/sort/selectionsort/SelectionSort.java)
 
 ## 搜索算法
 
@@ -26,5 +27,6 @@
 * [拓扑排序](/src/main/java/info/victorchu/algorithms/graph/TopologicalSortingGraph.java)
 
 ## 匹配问题
+
 * [manacher 最长回文子串](src/main/java/info/victorchu/algorithms/str/palindrome/Manacher.java)
 * [KMP 字符串模式匹配](src/main/java/info/victorchu/algorithms/str/match/KMPMatcher.java)
