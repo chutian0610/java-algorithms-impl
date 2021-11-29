@@ -1,5 +1,6 @@
 package info.victorchu.utils;
 
+import java.util.Collection;
 import java.util.function.Predicate;
 
 public interface Predicates {
@@ -25,6 +26,12 @@ public interface Predicates {
                 return true;
             }
             return false;
+        }
+    };
+    Predicate<Collection<?>> collectionNotEmpty = new Predicate<Collection<?>>() {
+        @Override
+        public boolean test(Collection<?> s) {
+            return s != null && !s.isEmpty();
         }
     };
 }

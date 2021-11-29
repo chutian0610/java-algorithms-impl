@@ -7,13 +7,17 @@ import info.victorchu.utils.Pair;
 import info.victorchu.utils.PredicateExec;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
+import static info.victorchu.utils.Predicates.collectionNotEmpty;
 import static info.victorchu.utils.Predicates.stringNotBlank;
 
 /**
- * hash环 包装类
+ * hash环 包装类.
+ * 用于将算法适配到一致性hash接口
  */
 public class RingHashWrapper implements ConsistentHash {
 
@@ -66,17 +70,27 @@ public class RingHashWrapper implements ConsistentHash {
         PredicateExec.check(nodes1 -> nodes1 != null && nodes1.size() > 0, nodes,
                 "The resources to add must not empty");
         for (Node node : nodes) {
-            PredicateExec.check(node1 -> node1 != null, node, "The resource to add cannot be null");
+            PredicateExec.check(Objects::nonNull, node, "The resource to add cannot be null!");
+            PredicateExec.check(item -> nodeMap.containsKey(item.name()),node,"Node["+node+"] already exist!");
+            Collection<VirtualNode> virtualNodes = inner.addNode(node);
+            // 暂存虚拟节点
+            nodeMap.put(node.name(),Pair.of(node,virtualNodes));
         }
     }
 
     @Override
     public void removeNodes(Collection<? extends Node> nodes) {
-
+        PredicateExec.check(collectionNotEmpty,nodes,"to remove nodes must not empty");
+        for (Node node:nodes){
+            PredicateExec.check(Objects::nonNull, node, "The resource to add cannot be null!");
+            final Pair<?,Collection<VirtualNode>> pair = PredicateExec.check(Objects::nonNull,nodeMap.get(node.name()),"Node["+node+"]does not exist");
+            inner.removeNodes(pair.getRight());
+            nodeMap.remove(node.name());
+        }
     }
 
     @Override
     public int nodeCount() {
-        return 0;
+        return nodeMap.size();
     }
 }

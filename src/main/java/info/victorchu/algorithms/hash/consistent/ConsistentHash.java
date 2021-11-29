@@ -15,7 +15,7 @@ public interface ConsistentHash {
     /**
      * 向集群中添加新的节点
      *
-     * @param nodes
+     * @param nodes 加入的节点集合
      */
     void addNodes(Collection<? extends Node> nodes);
 
@@ -23,13 +23,13 @@ public interface ConsistentHash {
     /**
      * 从集群中删除节点
      *
-     * @param nodes
+     * @param nodes 删除的节点集合
      */
     void removeNodes(Collection<? extends Node> nodes);
 
     /**
      * 集群中节点数
-     * @return
+     * @return 节点个数
      */
     int nodeCount();
 }

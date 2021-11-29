@@ -2,14 +2,13 @@ package info.victorchu.algorithms.hash.consistent.ringhash;
 
 import info.victorchu.algorithms.hash.consistent.HashFunction;
 import info.victorchu.algorithms.hash.consistent.Node;
-import info.victorchu.utils.Pair;
-import info.victorchu.utils.PredicateExec;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.function.BiConsumer;
-import java.util.function.Predicate;
-
-import static info.victorchu.utils.Predicates.stringNotBlank;
 
 /**
  * hash 环实现一致性hash
@@ -58,6 +57,7 @@ public class RingHash {
 
     /**
      * 基于key找到对应的机器节点.
+     *
      * @param key
      * @return
      */
@@ -75,18 +75,19 @@ public class RingHash {
 
     /**
      * 向一致性hash中添加节点
+     *
      * @param pNode
      */
-    public Collection<VirtualNode> addNode( Node pNode ) {
+    public Collection<VirtualNode> addNode(Node pNode) {
         final List<VirtualNode> vNodes = new LinkedList<>();
-        for( int i = 0; i < vNodeCount; i++ ) {
-            long hash = hashFunction.hash( pNode.name(), i );
-            while( ring.containsKey(hash)){
+        for (int i = 0; i < vNodeCount; i++) {
+            long hash = hashFunction.hash(pNode.name(), i);
+            while (ring.containsKey(hash)) {
                 hash = hashFunction.hash(hash, i);
             }
             // 创建虚拟节点
-            final VirtualNode vNode = new VirtualNode( pNode, hash );
-            ring.put( hash, vNode );
+            final VirtualNode vNode = new VirtualNode(pNode, hash);
+            ring.put(hash, vNode);
             vNodes.add(vNode);
         }
         return vNodes;
@@ -94,16 +95,18 @@ public class RingHash {
 
     /**
      * 从一致性hash中删除节点
+     *
      * @param toRemove
      */
-    public void removeNodes( Collection<VirtualNode> toRemove ) {
-        for( VirtualNode vNode : toRemove ){
-            ring.remove( vNode.getHash() );
+    public void removeNodes(Collection<VirtualNode> toRemove) {
+        for (VirtualNode vNode : toRemove) {
+            ring.remove(vNode.getHash());
         }
     }
 
     /**
      * 虚拟节点数
+     *
      * @return
      */
     public int virtualNodesCount() {
@@ -112,10 +115,11 @@ public class RingHash {
 
     /**
      * 遍历hash环的节点
+     *
      * @param consumer 对节点操作的action
      */
-    public void forEach( BiConsumer<Long,VirtualNode> consumer ) {
-        ring.forEach( consumer );
+    public void forEach(BiConsumer<Long, VirtualNode> consumer) {
+        ring.forEach(consumer);
     }
 
 }
