@@ -7,7 +7,7 @@ public interface Predicates {
     Predicate<String> stringNotBlank = new Predicate<String>() {
         @Override
         public boolean test(String s) {
-            return s != null && s.trim().length() <= 0;
+            return s != null && s.trim().length() > 0;
         }
     };
     Predicate<Integer> integerGT0 = new Predicate<Integer>() {

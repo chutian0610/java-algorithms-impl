@@ -11,7 +11,8 @@ import java.util.TreeMap;
 import java.util.function.BiConsumer;
 
 /**
- * hash 环实现一致性hash
+ * hash 环实现一致性hash.
+ * <a href="https://www.cs.princeton.edu/courses/archive/fall09/cos518/papers/chash.pdf">paper</a>
  */
 public class RingHash {
 

@@ -7,7 +7,6 @@ import info.victorchu.utils.Pair;
 import info.victorchu.utils.PredicateExec;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -37,7 +36,6 @@ public class RingHashWrapper implements ConsistentHash {
      * @param hashFunction hash方法
      */
     public RingHashWrapper(Collection<? extends Node> nodes, HashFunction hashFunction) {
-        super();
         this.nodeMap = new HashMap<>();
         this.inner = new RingHash(hashFunction);
         this.addNodes(nodes);
@@ -71,7 +69,7 @@ public class RingHashWrapper implements ConsistentHash {
                 "The resources to add must not empty");
         for (Node node : nodes) {
             PredicateExec.check(Objects::nonNull, node, "The resource to add cannot be null!");
-            PredicateExec.check(item -> nodeMap.containsKey(item.name()),node,"Node["+node+"] already exist!");
+            PredicateExec.check(item -> !nodeMap.containsKey(item.name()),node,"Node["+node+"] already exist!");
             Collection<VirtualNode> virtualNodes = inner.addNode(node);
             // 暂存虚拟节点
             nodeMap.put(node.name(),Pair.of(node,virtualNodes));

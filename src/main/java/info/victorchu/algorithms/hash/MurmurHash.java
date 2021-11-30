@@ -17,6 +17,20 @@ public class MurmurHash {
         public long val1;
         public long val2;
 
+        public boolean eq(LongPair one){
+            if(one ==null){
+                return false;
+            }
+            if(one.val1 != this.val1){
+                return false;
+            }
+            if(one.val2!= this.val2){
+                return false;
+
+            }
+            return true;
+        }
+
         @Override
         public String toString() {
             return Long.toHexString(val1)+Long.toHexString(val2);

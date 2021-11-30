@@ -8,7 +8,7 @@ public interface ConsistentHash {
      * 返回 key 关联的节点
      *
      * @param key 目标key
-     * @return
+     * @return key关联的节点
      */
     Node getNode(String key);
 
