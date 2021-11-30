@@ -1,19 +1,14 @@
 package info.victorchu.algorithms.hash.consistent.ringhash;
 
-import info.victorchu.algorithms.hash.MurmurHash;
-import info.victorchu.algorithms.hash.TreeMapConsistentHash;
 import info.victorchu.algorithms.hash.consistent.Node;
 import info.victorchu.algorithms.hash.consistent.SimpleNode;
 import info.victorchu.algorithms.hash.consistent.hashfunction.MurmurHashFunction;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
