@@ -30,6 +30,7 @@
 * [一致性hash-hash环](src/main/java/info/victorchu/algorithms/hash/TreeMapConsistentHash.java)
 * [一致性hash-跳转hash](src/main/java/info/victorchu/algorithms/hash/JumpConsistentHash.java)
 * [MurmurHash](src/main/java/info/victorchu/algorithms/hash/MurmurHash.java)
+* [md5](src/main/java/info/victorchu/algorithms/hash/MD5.java)
 
 
 ## 匹配问题
