@@ -2,33 +2,36 @@ package info.victorchu.algorithms.cache;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
  * @description:
  * @Date:2022/11/18 12:47
  * @author:victorchutian
  */
-class LFUCacheTest {
+class LFUCacheUsingTwoWayLinkedListTest {
     @Test
-    public void main(String[] args) {
-        LFUCache<String,String> cache = new LFUCache<>(4);
+    public void test() {
+        LFUCacheUsingTwoWayLinkedList<String,String> cache = new LFUCacheUsingTwoWayLinkedList<>(4);
         cache.put("a","A");
         cache.put("b","B");
         cache.put("c","C");
         cache.put("d","D");
         cache.get("a");
         cache.get("a");
+        cache.get("a");
         cache.get("b");
         cache.get("b");
         cache.get("b");
         cache.get("c");
         cache.get("c");
-        cache.get("d"); // this will be remove according to LFU policy
+        cache.get("d");
+        cache.get("d");
+        cache.get("c");
+        // d will be remove according to LFU policy
         cache.put("e","E");
+        cache.get("e");
         cache.getMap().forEach((k,v)->{
-            System.out.println(k+":"+v.value);
+            System.out.println(k+":"+v.getLeft()+":"+v.getRight());
         });
     }
 }
