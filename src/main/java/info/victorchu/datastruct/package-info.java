@@ -1,4 +1,4 @@
 /**
  * 使用java实现常见数据结构
  */
-package info.victorchu.common;
+package info.victorchu.datastruct;
