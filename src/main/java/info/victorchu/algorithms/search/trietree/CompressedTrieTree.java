@@ -1,11 +1,11 @@
 package info.victorchu.algorithms.search.trietree;
 
 /**
- * @Author victor
- * @Email victorchu0610@outlook.com
- * @Data 2019/7/30
- * @Version 1.0
- * @Description 压缩字典树
+ * @author victor
+ * @mail victorchu0610@outlook.com
+ * @date 2019/7/30
+ * @version 1.0
+ * @description 压缩字典树
  */
 import java.util.Map;
 import java.util.Set;

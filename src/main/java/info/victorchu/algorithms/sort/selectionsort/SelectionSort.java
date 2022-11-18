@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * @Author victor
- * @Email victorchu0610@outlook.com
- * @Data 2019/4/13
- * @Version 1.0
- * @Description 选择排序的实现
+ * @author victor
+ * @mail victorchu0610@outlook.com
+ * @date 2019/4/13
+ * @version 1.0
+ * @description 选择排序的实现
  */
 public class SelectionSort<T> extends Sorter<T> {
 

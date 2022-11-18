@@ -12,9 +12,9 @@ import java.util.List;
 
 /**
  * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
- * @Description:
+ * @description:
  * @Date:2021/11/30 3:47 下午
- * @Author:victorchutian
+ * @author:victorchutian
  */
 class RingHashWrapperTest {
 

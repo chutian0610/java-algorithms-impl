@@ -1,12 +1,14 @@
 package info.victorchu.utils;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 /**
  * 断言工厂
  */
 public interface Predicates {
+    Predicate<Object> OBJECT_NOT_NULL = Objects::nonNull;
     /**
      * 字符串不为空
      */

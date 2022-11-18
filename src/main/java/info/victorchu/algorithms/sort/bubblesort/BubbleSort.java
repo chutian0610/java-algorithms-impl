@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * @Author victor
- * @Email victorchu0610@outlook.com
- * @Data 2019/4/13
- * @Version 1.0
- * @Description 冒泡排序的实现
+ * @author victor
+ * @mail victorchu0610@outlook.com
+ * @date 2019/4/13
+ * @version 1.0
+ * @description 冒泡排序的实现
  */
 public class BubbleSort<T> extends Sorter<T> {
 
