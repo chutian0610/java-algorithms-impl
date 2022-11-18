@@ -3,35 +3,24 @@ package info.victorchu.utils;
 import java.util.Collection;
 import java.util.function.Predicate;
 
+/**
+ * 断言工厂
+ */
 public interface Predicates {
-    Predicate<String> stringNotBlank = new Predicate<String>() {
-        @Override
-        public boolean test(String s) {
-            return s != null && s.trim().length() > 0;
-        }
-    };
-    Predicate<Integer> integerGT0 = new Predicate<Integer>() {
-        @Override
-        public boolean test(Integer integer) {
-            if(integer>0){
-                return true;
-            }
-            return false;
-        }
-    };
-    Predicate<Integer> integerGTE0 = new Predicate<Integer>() {
-        @Override
-        public boolean test(Integer integer) {
-            if(integer>=0){
-                return true;
-            }
-            return false;
-        }
-    };
-    Predicate<Collection<?>> collectionNotEmpty = new Predicate<Collection<?>>() {
-        @Override
-        public boolean test(Collection<?> s) {
-            return s != null && !s.isEmpty();
-        }
-    };
+    /**
+     * 字符串不为空
+     */
+    Predicate<String> STRING_NOT_BLANK = s -> s != null && s.trim().length() > 0;
+    /**
+     * Int 大于 0
+     */
+    Predicate<Integer> INTEGER_GT_0 = integer -> integer > 0;
+    /**
+     * Int 大于等于 0
+     */
+    Predicate<Integer> INTEGER_GTE_0 = integer -> integer >= 0;
+    /**
+     * 集合不为空
+     */
+    Predicate<Collection<?>> COLLECTION_NOT_EMPTY = s -> s != null && !s.isEmpty();
 }

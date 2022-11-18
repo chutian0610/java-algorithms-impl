@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static info.victorchu.utils.Predicates.collectionNotEmpty;
-import static info.victorchu.utils.Predicates.stringNotBlank;
+import static info.victorchu.utils.Predicates.COLLECTION_NOT_EMPTY;
+import static info.victorchu.utils.Predicates.STRING_NOT_BLANK;
 
 /**
  * hash环 包装类.
@@ -58,7 +58,7 @@ public class RingHashWrapper implements ConsistentHash {
     @Override
     public Node getNode(String key) {
         // 参数检查,计算的key不能为空
-        PredicateExec.check(stringNotBlank, key, "The key to evaluate must not empty");
+        PredicateExec.check(STRING_NOT_BLANK, key, "The key to evaluate must not empty");
         // 调用内部RingHash
         return inner.getNode(key);
     }
@@ -78,7 +78,7 @@ public class RingHashWrapper implements ConsistentHash {
 
     @Override
     public void removeNodes(Collection<? extends Node> nodes) {
-        PredicateExec.check(collectionNotEmpty,nodes,"to remove nodes must not empty");
+        PredicateExec.check(COLLECTION_NOT_EMPTY,nodes,"to remove nodes must not empty");
         for (Node node:nodes){
             PredicateExec.check(Objects::nonNull, node, "The resource to add cannot be null!");
             final Pair<?,Collection<VirtualNode>> pair = PredicateExec.check(Objects::nonNull,nodeMap.get(node.name()),"Node["+node+"]does not exist");

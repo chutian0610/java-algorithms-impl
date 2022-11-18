@@ -1,4 +1,4 @@
 /**
- * java 算法实现包
+ * 使用java实现算法
  */
 package info.victorchu.algorithms;

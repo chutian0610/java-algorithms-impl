@@ -1,5 +1,10 @@
 package info.victorchu.utils;
 
+/**
+ * Pair 工具类
+ * @param <T>
+ * @param <U>
+ */
 public class Pair<T, U> {
 
     public T getLeft() {
@@ -20,6 +25,7 @@ public class Pair<T, U> {
     public static <T,U> Pair<T,U> of(T first, U second){
         return new Pair<T,U>(first,second);
     }
+
     @Override
     public String toString() {
         return "(" + left + ", " + right + ")";
