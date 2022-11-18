@@ -3,23 +3,31 @@ package info.victorchu.algorithms.cache;
 import java.util.HashMap;
 
 /**
- * @Author victor
- * @Email victorchu0610@outlook.com
- * @Data 2019/4/28
- * @Version 1.0
- * @Description LFU（Least Frequently Used）最近最少使用算法。
+ * @author victor
+ * @mail victorchu0610@outlook.com
+ * @date 2019/4/28
+ * @version 1.0
+ * @description LFU（Least Frequently Used）最近最少使用算法。
  * 它是基于“如果一个数据在最近一段时间内使用次数很少，那么在将来一段时间内被使用的可能性也很小”的思路。
  * 如果访问次数相同的元素有多个，则移除最久访问的那个
  */
 public class LFUCache<K, V> {
-    private NodeQueue tail;  //链表尾部的NodeQueue
-    private int capacity;  //容量
+    /**
+     * 链表尾部的NodeQueue
+     */
+    private NodeQueue tail;
+    /**
+     * 容量
+     */
+    private int capacity;
 
     public HashMap<K, Node> getMap() {
         return map;
     }
-
-    private HashMap<K, Node> map;  //存储key-value对的HashMap
+    /**
+     * 存储key-value对的HashMap
+     */
+    private HashMap<K, Node> map;
 
     //构造方法
     public LFUCache(int capacity) {
@@ -27,34 +35,19 @@ public class LFUCache<K, V> {
         map = new HashMap<K, Node>(capacity);
     }
 
-    public static void main(String[] args) {
-        LFUCache<String,String> cache = new LFUCache<>(4);
-        cache.put("a","A");
-        cache.put("b","B");
-        cache.put("c","C");
-        cache.put("d","D");
-        cache.get("a");
-        cache.get("a");
-        cache.get("b");
-        cache.get("b");
-        cache.get("b");
-        cache.get("c");
-        cache.get("c");
-        cache.get("d"); // this will be remove according to LFU policy
-        cache.put("e","E");
-        cache.getMap().forEach((k,v)->{
-            System.out.println(k+":"+v.value);
-        });
-    }
     private void oneStepUp(Node n) {
-        n.frequency++; //使用次数+1
-        boolean singleNodeQ = false; //为true时，代表此NodeQueue中只有一个Node元素
-        if (n.nq.head == n.nq.tail)
+        //使用次数+1
+        n.frequency++;
+        //为true时，代表此NodeQueue中只有一个Node元素
+        boolean singleNodeQ = false;
+        if (n.nq.head == n.nq.tail) {
             singleNodeQ = true;
+        }
         if (n.nq.next != null) {
             if (n.nq.next.tail.frequency == n.frequency) {
                 //右侧NodeQueue的访问次数与Node当前访问次数一样，将此Node置于右侧NodeQueue的头部
-                removeNode(n); //从当前NodeQueue中删除Node
+                //从当前NodeQueue中删除Node
+                removeNode(n);
                 //把Node插入到右侧NodeQueue的头部
                 n.prev = n.nq.next.head;
                 n.nq.next.head.next = n;
@@ -89,32 +82,40 @@ public class LFUCache<K, V> {
             removeNQ(n.nq);
             return n;
         }
-        if (n.prev != null)
+        if (n.prev != null) {
             n.prev.next = n.next;
-        if (n.next != null)
+        }
+        if (n.next != null) {
             n.next.prev = n.prev;
-        if (n.nq.head == n)
+        }
+        if (n.nq.head == n) {
             n.nq.head = n.prev;
-        if (n.nq.tail == n)
+        }
+        if (n.nq.tail == n) {
             n.nq.tail = n.next;
+        }
         n.prev = null;
         n.next = null;
         return n;
     }
 
     private void removeNQ(NodeQueue nq) {
-        if (nq.prev != null)
+        if (nq.prev != null) {
             nq.prev.next = nq.next;
-        if (nq.next != null)
+        }
+        if (nq.next != null) {
             nq.next.prev = nq.prev;
-        if (this.tail == nq)
+        }
+        if (this.tail == nq) {
             this.tail = nq.next;
+        }
     }
 
     public V get(K key) {
         Node n = map.get(key);
-        if (n == null)
+        if (n == null) {
             return null;
+        }
         oneStepUp(n);
         return (V) n.value;
     }
@@ -163,10 +164,22 @@ public class LFUCache<K, V> {
 class Node<K, V> {
     K key;
     V value;
-    int frequency = 0; //访问次数
-    Node next; //下一元素
-    Node prev; //前一元素
-    NodeQueue nq;  //所属的外层链表元素
+    /**
+     * 访问次数
+     */
+    int frequency = 0;
+    /**
+     * 下一元素
+     */
+    Node next;
+    /**
+     * 前一元素
+     */
+    Node prev;
+    /**
+     * 所属的外层链表元素
+     */
+    NodeQueue nq;
 
     Node(K key, V value) {
         this.key = key;
@@ -175,10 +188,22 @@ class Node<K, V> {
 }
 
 class NodeQueue {
-    NodeQueue next; //下一元素
-    NodeQueue prev;  //前一元素
-    Node tail;  //尾部Node
-    Node head;  //头部Node
+    /**
+     *     下一元素
+     */
+    NodeQueue next;
+    /**
+     * 前一元素
+     */
+    NodeQueue prev;
+    /**
+     * 尾部Node
+     */
+    Node tail;
+    /**
+     * 头部Node
+     */
+    Node head;
 
     public NodeQueue(NodeQueue next, NodeQueue prev, Node tail, Node head) {
         this.next = next;

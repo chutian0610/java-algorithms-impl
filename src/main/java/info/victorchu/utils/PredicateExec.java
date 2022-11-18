@@ -2,6 +2,10 @@ package info.victorchu.utils;
 
 import java.util.function.Predicate;
 
+/**
+ * 断言检测工具类
+ * @author victorchu
+ */
 public class PredicateExec {
     public static <T> T check(Predicate<T> predicate,T target,String message){
         if(predicate.test(target)){

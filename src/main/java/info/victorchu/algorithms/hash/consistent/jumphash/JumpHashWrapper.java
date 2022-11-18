@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static info.victorchu.utils.Predicates.collectionNotEmpty;
-import static info.victorchu.utils.Predicates.integerGT0;
-import static info.victorchu.utils.Predicates.stringNotBlank;
+import static info.victorchu.utils.Predicates.COLLECTION_NOT_EMPTY;
+import static info.victorchu.utils.Predicates.INTEGER_GT_0;
+import static info.victorchu.utils.Predicates.STRING_NOT_BLANK;
 
 /**
  * Jump Hash 函数和 一致性Hash的适配器.
@@ -22,7 +22,7 @@ public class JumpHashWrapper implements ConsistentHash {
     private final RouterMap routerMap;
 
     public JumpHashWrapper(Collection<? extends Node> nodes, HashFunction hashFunction) {
-        int size = PredicateExec.check(collectionNotEmpty, nodes, "cluster must have at least one node").size();
+        int size = PredicateExec.check(COLLECTION_NOT_EMPTY, nodes, "cluster must have at least one node").size();
         this.routerMap = new RouterMap(size);
         for (Node node : nodes) {
             PredicateExec.check(Objects::nonNull, node, "The node to add must not null");
@@ -36,14 +36,14 @@ public class JumpHashWrapper implements ConsistentHash {
     @Override
     public Node getNode(String key) {
         int bucket = inner.getBucket(
-                PredicateExec.check(stringNotBlank, key, "The key to evaluate must not empty")
+                PredicateExec.check(STRING_NOT_BLANK, key, "The key to evaluate must not empty")
         );
         return routerMap.get(bucket);
     }
 
     @Override
     public void addNodes(Collection<? extends Node> nodes) {
-        PredicateExec.check(collectionNotEmpty, nodes, "The nodes to add must not empty");
+        PredicateExec.check(COLLECTION_NOT_EMPTY, nodes, "The nodes to add must not empty");
         for (Node node : nodes) {
             int bucket = inner.getSize();
             routerMap.put(node, bucket);
@@ -53,7 +53,7 @@ public class JumpHashWrapper implements ConsistentHash {
 
     @Override
     public void removeNodes(Collection<? extends Node> nodes) {
-        PredicateExec.check(collectionNotEmpty, nodes, "The nodes to remove must not empty");
+        PredicateExec.check(COLLECTION_NOT_EMPTY, nodes, "The nodes to remove must not empty");
         PredicateExec.check(item -> inner.getSize() > item.size(), nodes,
                 "Trying to remove more nodes than available");
 
@@ -86,7 +86,7 @@ public class JumpHashWrapper implements ConsistentHash {
         private int capacity;
 
         public RouterMap(int size) {
-            PredicateExec.check(integerGT0, size, "The initial size cannot be negative");
+            PredicateExec.check(INTEGER_GT_0, size, "The initial size cannot be negative");
             this.nodeToBucket = new HashMap<>(size);
             this.bucketToNode = new HashMap<>(size);
             capacity = 0;

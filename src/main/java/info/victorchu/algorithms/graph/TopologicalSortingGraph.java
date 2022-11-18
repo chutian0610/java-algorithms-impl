@@ -7,11 +7,11 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @Author victor
- * @Email victorchu0610@outlook.com
- * @Data 2019/8/20
- * @Version 1.0
- * @Description 有向图拓扑排序
+ * @author victor
+ * @mail victorchu0610@outlook.com
+ * @date 2019/8/20
+ * @version 1.0
+ * @description 有向图拓扑排序
  */
 public class TopologicalSortingGraph<V extends Comparable> {
 
