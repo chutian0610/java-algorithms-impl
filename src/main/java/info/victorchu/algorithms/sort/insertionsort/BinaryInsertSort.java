@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * @Author victor
- * @Email victorchu0610@outlook.com
- * @Data 2019/4/28
- * @Version 1.0
- * @Description TODO
+ * @author victor
+ * @mail victorchu0610@outlook.com
+ * @date 2019/4/28
+ * @version 1.0
+ * @description TODO
  */
 public class BinaryInsertSort<T> extends Sorter<T> {
     public BinaryInsertSort(Comparator<T> comparator) {

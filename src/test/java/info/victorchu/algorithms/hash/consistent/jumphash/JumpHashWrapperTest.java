@@ -15,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
- * @Description:
+ * @description:
  * @Date:2021/11/30 4:44 下午
- * @Author:victorchutian
+ * @author:victorchutian
  */
 class JumpHashWrapperTest {
 

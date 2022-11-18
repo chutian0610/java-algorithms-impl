@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Author victor
- * @Email victorchu0610@outlook.com
- * @Data 2019/7/30
- * @Version 1.0
- * @Description TODO
+ * @author victor
+ * @mail victorchu0610@outlook.com
+ * @date 2019/7/30
+ * @version 1.0
+ * @description TODO
  */
 public class TrieNode{
     private Map<Character,TrieNode> children = new HashMap<>();

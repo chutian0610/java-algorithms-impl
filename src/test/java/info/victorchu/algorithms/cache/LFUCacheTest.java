@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
- * @Description:
+ * @description:
  * @Date:2022/11/18 12:47
- * @Author:victorchutian
+ * @author:victorchutian
  */
 class LFUCacheTest {
     @Test

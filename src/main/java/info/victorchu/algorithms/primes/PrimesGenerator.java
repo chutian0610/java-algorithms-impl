@@ -3,11 +3,11 @@ package info.victorchu.algorithms.primes;
 import java.util.Arrays;
 
 /**
- * @Author victor
- * @Email victorchu0610@outlook.com
- * @Data 2019/8/15
- * @Version 1.0
- * @Description 素数生成器
+ * @author victor
+ * @mail victorchu0610@outlook.com
+ * @date 2019/8/15
+ * @version 1.0
+ * @description 素数生成器
  */
 public class PrimesGenerator {
 
