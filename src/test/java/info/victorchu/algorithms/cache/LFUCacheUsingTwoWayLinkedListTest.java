@@ -3,7 +3,6 @@ package info.victorchu.algorithms.cache;
 import org.junit.jupiter.api.Test;
 
 /**
- * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
  * @description:
  * @Date:2022/11/18 12:47
  * @author:victorchutian
