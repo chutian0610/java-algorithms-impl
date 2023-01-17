@@ -5,7 +5,6 @@ import info.victorchu.algorithms.booleansimplification.core.boolexp.AbstractBool
 import java.util.List;
 
 /**
- * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
  * @Description:
  * @Date:2022/11/18 13:53
  * @Author:victorchutian

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
  * @description:
  * @Date:2021/11/30 3:47 下午
  * @author:victorchutian

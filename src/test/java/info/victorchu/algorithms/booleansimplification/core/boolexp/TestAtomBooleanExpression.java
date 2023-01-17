@@ -5,7 +5,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
  * @Description:
  * @Date:2022/11/18 13:37
  * @Author:victorchutian

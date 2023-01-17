@@ -14,7 +14,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
  * @description:
  * @Date:2021/11/30 4:44 下午
  * @author:victorchutian

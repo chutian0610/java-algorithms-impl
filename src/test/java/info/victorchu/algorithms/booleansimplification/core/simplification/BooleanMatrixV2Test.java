@@ -8,7 +8,6 @@ import static info.victorchu.algorithms.booleansimplification.core.simplificatio
 import static info.victorchu.algorithms.booleansimplification.core.simplification.BooleanMatrixV2.MatrixNode.POSITIVE;
 
 /**
- * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
  * @Description:
  * @Date:2022/11/18 13:40
  * @Author:victorchutian
