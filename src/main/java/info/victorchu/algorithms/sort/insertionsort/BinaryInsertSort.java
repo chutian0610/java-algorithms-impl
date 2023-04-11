@@ -10,7 +10,7 @@ import java.util.Comparator;
  * @mail victorchu0610@outlook.com
  * @date 2019/4/28
  * @version 1.0
- * @description TODO
+ * @description 二分排序
  */
 public class BinaryInsertSort<T> extends Sorter<T> {
     public BinaryInsertSort(Comparator<T> comparator) {
