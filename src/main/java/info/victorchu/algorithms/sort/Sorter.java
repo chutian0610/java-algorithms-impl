@@ -10,6 +10,9 @@ import java.util.Comparator;
  * @description 抽象排序器
  */
 public abstract class Sorter<T> {
+    /**
+     * 比较器
+     */
     protected Comparator<T> comparator;
 
     public Sorter(Comparator<T> comparator) {
