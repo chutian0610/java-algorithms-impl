@@ -44,7 +44,7 @@
 
 ### 文本Diff算法
 
-* [Myers 算法]()
+* [Myers 算法](../src/main/java/info/victorchu/algorithms/text/diff/MyersDiff.java)
 
 ### 布尔表达式化简
 
