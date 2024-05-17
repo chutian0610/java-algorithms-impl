@@ -37,10 +37,14 @@
 * [md5](../src/main/java/info/victorchu/algorithms/hash/MD5.java)
 
 
-## 匹配问题
+### 字符串相关
 
-* [manacher 最长回文子串](../src/main/java/info/victorchu/algorithms/str/palindrome/Manacher.java)
-* [KMP 字符串模式匹配](../src/main/java/info/victorchu/algorithms/str/match/KMPMatcher.java)
+* [Manacher-最长回文子串](../src/main/java/info/victorchu/algorithms/str/palindrome/Manacher.java)
+* [KMP-字符串模式匹配](../src/main/java/info/victorchu/algorithms/str/match/KMPMatcher.java)
+
+### 文本Diff算法
+
+* [Myers 算法]()
 
 ### 布尔表达式化简
 
