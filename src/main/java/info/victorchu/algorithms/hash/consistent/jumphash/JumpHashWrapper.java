@@ -1,7 +1,7 @@
 package info.victorchu.algorithms.hash.consistent.jumphash;
 
 import info.victorchu.algorithms.hash.consistent.ConsistentHash;
-import info.victorchu.algorithms.hash.consistent.HashFunction;
+import info.victorchu.algorithms.hash.HashFunction;
 import info.victorchu.algorithms.hash.consistent.Node;
 import info.victorchu.utils.PredicateExec;
 

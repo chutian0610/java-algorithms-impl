@@ -1,6 +1,6 @@
 package info.victorchu.algorithms.hash.consistent.jumphash;
 
-import info.victorchu.algorithms.hash.consistent.HashFunction;
+import info.victorchu.algorithms.hash.HashFunction;
 
 /**
  * 跳转Hash.
