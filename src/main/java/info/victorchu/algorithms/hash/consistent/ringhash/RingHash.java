@@ -1,6 +1,6 @@
 package info.victorchu.algorithms.hash.consistent.ringhash;
 
-import info.victorchu.algorithms.hash.consistent.HashFunction;
+import info.victorchu.algorithms.hash.HashFunction;
 import info.victorchu.algorithms.hash.consistent.Node;
 
 import java.util.Collection;

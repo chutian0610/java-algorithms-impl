@@ -1,4 +1,4 @@
-package info.victorchu.algorithms.hash.consistent;
+package info.victorchu.algorithms.hash;
 
 import info.victorchu.utils.PredicateExec;
 

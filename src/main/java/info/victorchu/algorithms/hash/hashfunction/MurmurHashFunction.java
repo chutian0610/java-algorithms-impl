@@ -1,7 +1,7 @@
-package info.victorchu.algorithms.hash.consistent.hashfunction;
+package info.victorchu.algorithms.hash.hashfunction;
 
 import info.victorchu.algorithms.hash.MurmurHash;
-import info.victorchu.algorithms.hash.consistent.HashFunction;
+import info.victorchu.algorithms.hash.HashFunction;
 
 /**
  * MurmurHash 算法的包装类
