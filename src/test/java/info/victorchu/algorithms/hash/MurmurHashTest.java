@@ -1,12 +1,10 @@
 package info.victorchu.algorithms.hash;
 
+import info.victorchu.algorithms.hash.hashfunction.MurmurHash;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MurmurHashTest {
 

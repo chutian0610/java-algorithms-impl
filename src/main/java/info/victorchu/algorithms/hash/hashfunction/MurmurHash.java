@@ -1,4 +1,4 @@
-package info.victorchu.algorithms.hash;
+package info.victorchu.algorithms.hash.hashfunction;
 
 import java.nio.charset.Charset;
 
