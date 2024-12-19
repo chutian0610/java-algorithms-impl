@@ -1,6 +1,5 @@
 package info.victorchu.algorithms.hash.hashfunction;
 
-import info.victorchu.algorithms.hash.MurmurHash;
 import info.victorchu.algorithms.hash.HashFunction;
 
 /**
