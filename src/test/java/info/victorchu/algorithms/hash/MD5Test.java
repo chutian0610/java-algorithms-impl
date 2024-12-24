@@ -18,7 +18,7 @@ class MD5Test {
         String password = "ILoveJava";
         MD5 md5 = new MD5();
         byte[] digest= md5.md5(password.getBytes());
-        String myHash = ByteUtils.toHexString(digest).toUpperCase();
+        String myHash = ByteUtils.bytesToHex(digest).toUpperCase();
         System.out.println("md5:"+myHash);
         return myHash;
     }
@@ -29,7 +29,7 @@ class MD5Test {
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(password.getBytes());
         byte[] digest = md.digest();
-        String myHash = ByteUtils.toHexString(digest).toUpperCase();
+        String myHash = ByteUtils.bytesToHex(digest).toUpperCase();
         System.out.println("md5Jdk:"+myHash);
         return myHash;
     }

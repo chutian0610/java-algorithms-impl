@@ -2,9 +2,12 @@ package info.victorchu.algorithms.hash.hashfunction;
 
 public class CRCHash
 {
+
+    public static final byte generator_8 = 0x1D;
+    public static final byte[] crcTable_8 = calCrc8Table();
+
     public static byte crc8BitShift(byte[] byteVal)
     {
-        final byte generator = 0x1D;
         byte crc = 0; /* init crc register */
         byte[] data = new byte[byteVal.length + 1];
         System.arraycopy(byteVal, 0, data, 0, byteVal.length);
@@ -21,7 +24,7 @@ public class CRCHash
                      */
                     crc = ((byte) (b & (1 << i)) != 0) ? (byte) (crc | 0x01) : (byte) (crc & 0xFE);
                     // 异或计算
-                    crc = (byte) (crc ^ generator);
+                    crc = (byte) (crc ^ generator_8);
                 }
                 else {
                     // crc 左移 1 位
@@ -35,7 +38,6 @@ public class CRCHash
 
     public static byte crcByte(byte byteVal)
     {
-        byte generator = 0x1D;
         // 省去了一开始的 8 次 移位
         byte crc = byteVal;
 
@@ -43,7 +45,7 @@ public class CRCHash
             if ((crc & 0x80) != 0) {
                 // 每一次MSB都是会异或得0,其实是把信息的最高位和多项式的多高位一起去掉了。
                 // 所以每一次信息都是先移位在异或。
-                crc = (byte) ((crc << 1) ^ generator);
+                crc = (byte) ((crc << 1) ^ generator_8);
             }
             else {
                 // 左移
@@ -55,7 +57,6 @@ public class CRCHash
 
     public static byte crc8ByteShift(byte[] bytes)
     {
-        byte generator = 0x1D;
         byte crc = 0;
 
         for (byte currByte : bytes) {
@@ -64,12 +65,45 @@ public class CRCHash
 
             for (int i = 0; i < 8; i++) {
                 if ((crc & 0x80) != 0) {
-                    crc = (byte) ((crc << 1) ^ generator);
+                    crc = (byte) ((crc << 1) ^ generator_8);
                 }
                 else {
                     crc <<= 1;
                 }
             }
+        }
+        return crc;
+    }
+
+    public static byte[] calCrc8Table()
+    {
+        byte[] crcTable = new byte[256];
+        for (int dividend = 0; dividend < 256; dividend++)
+        {
+            byte currByte = (byte)dividend;
+            for (byte bit = 0; bit < 8; bit++)
+            {
+                if ((currByte & 0x80) != 0)
+                {
+                    currByte <<= 1;
+                    currByte ^= generator_8;
+                }
+                else
+                {
+                    currByte <<= 1;
+                }
+            }
+            crcTable[dividend] = currByte;
+        }
+        return crcTable;
+    }
+
+    public static byte crc8ByteByTable(byte[] bytes)
+    {
+        byte crc = 0;
+        for (byte b : bytes) {
+            byte data = (byte)(b ^ crc);
+            crc = (byte)(crcTable_8[data]);
         }
         return crc;
     }
