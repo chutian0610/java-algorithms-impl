@@ -12,4 +12,11 @@ class CRCHashTest
         byte crc = CRCHash.crc8ByteByTable(ByteUtils.hexStringToByteArray("0102"));
         System.out.println(ByteUtils.byteToHex(crc));
     }
+
+    @Test
+    void crc16ByteShift()
+    {
+        short crc = CRCHash.crc16ByteShift(ByteUtils.hexStringToByteArray("0102"));
+        System.out.println(ByteUtils.bytesToHex(ByteUtils.unsignedShortToBytes(crc)));
+    }
 }
