@@ -78,18 +78,14 @@ public class CRCHash
     public static byte[] calCrc8Table()
     {
         byte[] crcTable = new byte[256];
-        for (int dividend = 0; dividend < 256; dividend++)
-        {
-            byte currByte = (byte)dividend;
-            for (byte bit = 0; bit < 8; bit++)
-            {
-                if ((currByte & 0x80) != 0)
-                {
+        for (int dividend = 0; dividend < 256; dividend++) {
+            byte currByte = (byte) dividend;
+            for (byte bit = 0; bit < 8; bit++) {
+                if ((currByte & 0x80) != 0) {
                     currByte <<= 1;
                     currByte ^= generator_8;
                 }
-                else
-                {
+                else {
                     currByte <<= 1;
                 }
             }
@@ -102,9 +98,29 @@ public class CRCHash
     {
         byte crc = 0;
         for (byte b : bytes) {
-            byte data = (byte)(b ^ crc);
-            crc = (byte)(crcTable_8[data]);
+            byte data = (byte) (b ^ crc);
+            crc = (byte) (crcTable_8[data]);
         }
+        return crc;
+    }
+
+    public static short crc16ByteShift(byte[] bytes)
+    {
+        final short generator = 0x1021;
+        short crc = 0;
+
+        for (byte b : bytes) {
+            crc ^= (short) (b << 8);
+            for (int i = 0; i < 8; i++) {
+                if ((crc & 0x8000) != 0) {
+                    crc = (short) ((crc << 1) ^ generator);
+                }
+                else {
+                    crc <<= 1;
+                }
+            }
+        }
+
         return crc;
     }
 }

@@ -20,6 +20,14 @@ public class ByteUtils {
         return new String(hexChars);
     }
 
+    public static byte[] unsignedShortToBytes(short value)
+    {
+        byte[] bytes = new byte[2];
+        bytes[0] = (byte) ((value >> 8) & 0xFF); // Higher-order byte
+        bytes[1] = (byte) (value & 0xFF);       // Lower-order byte
+        return bytes;
+    }
+
     public static byte[] hexStringToByteArray(String s) {
         int len = s.length();
         byte[] data = new byte[len / 2];
