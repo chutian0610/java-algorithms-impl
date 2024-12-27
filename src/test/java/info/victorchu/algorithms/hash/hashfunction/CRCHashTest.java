@@ -9,14 +9,18 @@ class CRCHashTest
     @Test
     void crc8ByteByTable()
     {
-        byte crc = CRCHash.crc8ByteByTable(ByteUtils.hexStringToByteArray("0102"));
-        System.out.println(ByteUtils.byteToHex(crc));
+        byte crc1 = CRCHash.crc8ByteByTable(ByteUtils.hexStringToByteArray("0102"));
+        System.out.println(ByteUtils.byteToHex(crc1));
+        byte crc2 = CRCHash.crc8ByteByTable(ByteUtils.hexStringToByteArray("0102"));
+        System.out.println(ByteUtils.byteToHex(crc2));
     }
 
     @Test
     void crc16ByteShift()
     {
-        short crc = CRCHash.crc16ByteShift(ByteUtils.hexStringToByteArray("0102"));
-        System.out.println(ByteUtils.bytesToHex(ByteUtils.unsignedShortToBytes(crc)));
+        short crc1 = CRCHash.crc16ByteShift(ByteUtils.hexStringToByteArray("0102"));
+        System.out.println(ByteUtils.bytesToHex(ByteUtils.unsignedShortToBytes(crc1)));
+        short crc2 = CRCHash.crc16ByteByTable(ByteUtils.hexStringToByteArray("0102"));
+        System.out.println(ByteUtils.bytesToHex(ByteUtils.unsignedShortToBytes(crc2)));
     }
 }
