@@ -5,6 +5,8 @@ public class CRCHash
 
     public static final byte generator_8 = 0x1D;
     public static final byte[] crcTable_8 = calCrc8Table();
+    public static final short generator_16 = 0x1021;
+    public static final short[] crcTable_16 = calCrc16Table();
 
     public static byte crc8BitShift(byte[] byteVal)
     {
@@ -106,21 +108,50 @@ public class CRCHash
 
     public static short crc16ByteShift(byte[] bytes)
     {
-        final short generator = 0x1021;
         short crc = 0;
-
         for (byte b : bytes) {
             crc ^= (short) (b << 8);
             for (int i = 0; i < 8; i++) {
                 if ((crc & 0x8000) != 0) {
-                    crc = (short) ((crc << 1) ^ generator);
+                    crc = (short) ((crc << 1) ^ generator_16);
                 }
                 else {
                     crc <<= 1;
                 }
             }
         }
+        return crc;
+    }
 
+    public static short[] calCrc16Table()
+    {
+        short[] crcTable = new short[256];
+
+        for (int dividend = 0; dividend < 256; dividend++) {
+            short curByte = (short) (dividend << 8);
+
+            for (byte bit = 0; bit < 8; bit++) {
+                if ((curByte & 0x8000) != 0) {
+                    curByte <<= 1;
+                    curByte ^= generator_16;
+                }
+                else {
+                    curByte <<= 1;
+                }
+            }
+            crcTable[dividend] = curByte;
+        }
+        return crcTable;
+    }
+
+    public static short crc16ByteByTable(byte[] bytes)
+    {
+        short crc = 0;
+        for (byte b : bytes) {
+            /* equal: ((crc ^ (b << 8)) >> 8), MSB是查找表的索引*/
+            byte pos = (byte) ((crc >> 8) ^ b);
+            crc = (short) ((crc << 8) ^ (crcTable_16[pos]));
+        }
         return crc;
     }
 }

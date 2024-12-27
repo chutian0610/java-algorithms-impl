@@ -2,16 +2,13 @@ package info.victorchu.algorithms.hash.consistent.jumphash;
 
 import info.victorchu.algorithms.hash.consistent.Node;
 import info.victorchu.algorithms.hash.consistent.SimpleNode;
-import info.victorchu.algorithms.hash.hashfunction.MurmurHashFunction;
-import info.victorchu.algorithms.hash.consistent.ringhash.RingHashWrapper;
+import info.victorchu.algorithms.hash.consistent.MurmurHashFunction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @description:
