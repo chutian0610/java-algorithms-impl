@@ -6,11 +6,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * @author victor
- * @mail victorchu0610@outlook.com
- * @date 2019/4/28
- * @version 1.0
- * @description 二分排序
+ * 二分排序的实现(插入排序的优化实现)
+ * 1. 把待排序的数组分成已排序和未排序两部分，初始的时候把第一个元素认为是已排好序的。
+ * 2. 从第二个元素开始，在已排好序的子数组中寻找到该元素合适的位置并插入该位置(二分查询)。
+ * 3. 重复上述过程直到最后一个元素被插入有序子数组中。
  */
 public class BinaryInsertSort<T> extends Sorter<T> {
     public BinaryInsertSort(Comparator<T> comparator) {
@@ -25,6 +24,7 @@ public class BinaryInsertSort<T> extends Sorter<T> {
                 // 需要移动位置
                 int index = binarySearch(array, 0, i - 1, target);
                 int j = i - 1;
+                // 将比目标大的元素都向后移动一位
                 while (j >= index) {
                     array[j + 1] = array[j];
                     j = j - 1;
@@ -36,13 +36,7 @@ public class BinaryInsertSort<T> extends Sorter<T> {
     }
 
     /**
-     * 返回搜索index
-     *
-     * @param array
-     * @param beginIndex
-     * @param endIndex
-     * @param target
-     * @return
+     * 返回 target 在index范围内的位置
      */
     int binarySearch(T[] array, int beginIndex, int endIndex, T target) {
         if (beginIndex == endIndex) {
