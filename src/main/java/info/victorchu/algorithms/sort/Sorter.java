@@ -3,11 +3,7 @@ package info.victorchu.algorithms.sort;
 import java.util.Comparator;
 
 /**
- * @author victor
- * @mail victorchu0610@outlook.com
- * @date 2019/4/13
- * @version 1.0
- * @description 抽象排序器
+ * 抽象排序类
  */
 public abstract class Sorter<T> {
     /**
