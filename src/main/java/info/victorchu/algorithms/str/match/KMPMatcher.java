@@ -4,47 +4,70 @@ import java.util.Arrays;
 
 public class KMPMatcher {
 
-     // 从模式中提取 next 数组
-     public void getNextArray(char[] pattern,int[] next) {
-         next[0]= -1; // index为0的字符前无字符串
-         for (int j = 0; j < pattern.length-1; ++j) {
-             // pattern[0~k-1] 与pattern[j-k ~ j-1] 相同
-             // 如果pattern[j] 匹配失败,下一步匹配 pattern[k].
-             int k = next[j];
-             while (k > 0 && pattern[k] != pattern[j]) {
-                 k = next[k];
-             }
-             if (k == -1) {
-                 next[j + 1] = 0;
-                 continue;
-             }
-             if (pattern[k] == pattern[j]) {
-                 // 如果pattern[j+1] 匹配失败,下一步匹配 pattern[k+1].
-                 // 但是如果 pattern[j+1] == pattern[k+1],这一步是可以省略的.直接判断 next[k+1]
-                 next[j + 1] = next[k+1];
-             }
-         }
-     }
+    public static int[] getNextArrayV0(String pattern) {
+        int[] next = new int[pattern.length()];
+        next[0] = 0;
+        for (int i = 1; i < pattern.length(); i++) {
+            for (int j = i; j >= 0; j--) {
+                if (pattern.substring(0, j).equals(pattern.substring(i - j + 1, i + 1))) {
+                    next[i] = j;
+                    break;
+                }
+            }
+        }
+        return next;
+    }
 
-     public int indexOf(String target,String pattern){
+    public static int[] getNextArrayV1(String pattern) {
+        int[] next = new int[pattern.length()];
+        next[0] = 0;
+        for (int i = 1; i < pattern.length(); i++) {
+            for (int j = next[i - 1] + 1; j >= 0; j--) {
+                // 注意，j 是从前一个字符的 next 前缀函数判断的
+                if (pattern.substring(0, j).equals(pattern.substring(i - j + 1, i + 1))) {
+                    next[i] = j;
+                    break;
+                }
+            }
+        }
+        return next;
+    }
+
+    public static int[] getNextArrayV2(String pattern) {
+        int[] next = new int[pattern.length()];
+        next[0] = 0;
+        for (int i = 1; i < pattern.length(); i++) {
+            int j = next[i - 1];
+            while (j > 0 && pattern.charAt(i) != pattern.charAt(j)) {
+                j = next[j - 1];
+            }
+            if (pattern.charAt(i) == pattern.charAt(j)) {
+                j++;
+            }
+            next[i] = j;
+        }
+        return next;
+    }
+
+     public int firstIndexOf(String target,String pattern){
          int i=0;int j=0;
          int tLength = target.length();
          int pLength = pattern.length();
          if(tLength < pLength){
              return -1;
          }
-         int[] next = new int[pattern.length()];
-         getNextArray(pattern.toCharArray(),next);
+         int[] next = getNextArrayV2(pattern);
 
          while (i<tLength && j<pLength){
-             //如果j = -1，或者当前字符匹配成功（即target[i] == pattern[j]），令i++，j++
-            if (j == -1 || target.charAt(i) == pattern.charAt(j)){
+             //如果j = 0，表示从头开始匹配
+             //或者当前字符匹配成功（即target[i] == pattern[j]），令i++，j++
+            if (j == 0 || target.charAt(i) == pattern.charAt(j)){
                 i++;
                 j++;
             } else {
-                //如果j != -1，且当前字符匹配失败（即target[i] != pattern[j]），则令 i 不变，j = next[j]
-                //next[j]即为j所对应的next值
-                j = next[j];
+                //如果j != 0，且当前字符匹配失败（即target[i] != pattern[j]），则令 i 不变，j = next[j-1]
+                //next[j-1]即为j所对应的next值
+                j = next[j-1];
             }
          }
          if (j == pLength) {
@@ -57,6 +80,7 @@ public class KMPMatcher {
      }
 
     public static void main(String[] args) {
-        System.out.println(new KMPMatcher().indexOf("abacababababc","ababababc"));
+        String pattern = "abababca";
+        System.out.println(new KMPMatcher().firstIndexOf("acacababababca",pattern));
     }
 }
