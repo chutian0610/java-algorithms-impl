@@ -13,6 +13,11 @@ public class PredicateExec {
         }
         throw new PredicateExecutionFailedException("Predicate exec fail:"+message);
     }
+    public static void check(Boolean expression,String message){
+        if(!expression){
+            throw new PredicateExecutionFailedException("Predicate exec fail:"+message);
+        }
+    }
 
     public static class PredicateExecutionFailedException extends RuntimeException {
         public PredicateExecutionFailedException() {
